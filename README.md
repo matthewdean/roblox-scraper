@@ -5,6 +5,10 @@ roblox-scraper
 ```javascript
 var roblox = require('roblox-scraper')
 
+roblox.getUserId('builderman', function(err, userId) {
+  console.log(userId) // 156
+})
+
 // get the first page of shedletsky's hats (18 assets per page)
 roblox.getAssetsOwnedByUser('shedletsky', 'hats', 1, function(result) {
   console.log(result);
