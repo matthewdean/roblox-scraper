@@ -1,49 +1,41 @@
 roblox-scraper
 ==============
 
-#####Usage
-
+#####Usage:
 ```javascript
 var roblox = require('roblox-scraper')
 
-// this method takes username or user ID as its first argument
+// get the first page of shedletsky's hats (18 assets per page)
 roblox.getAssetsOwnedByUser('shedletsky', 'hats', 1, function(result) {
-  console.log('shedletsky has ' + result.totalAssets + ' hats'); // 1080
-  var limitedUniques = result.assets.filter(function(hat) {
-	return hat.isLimitedUnique;
-  });
-  limitedUniques.forEach(function(limited) {
-    console.log('#' + limited.serialNumber + '/' + limited.totalSold + ' ' + limited.name);
-  });
+  console.log(result);
 });
 ```
 
-Output:
-
-```
-	shedletsky has 1080 hats
-	#237/300 Mr X
-	#170/300 Mr X
-	#43/300 Mr X
-	#411/500 Mr. Fancy Top Hat
-	#29/500 Mr. Fancy Top Hat
-	#1754/2500 Sapphire Vision Visor
-	#1490/2500 Sapphire Vision Visor
-	#3249/5000 Noob Attack: Periastron Punishment
-	#1418/5000 Noob Attack: Periastron Punishment
-	#1329/5000 Noob Attack: Periastron Punishment
-	#1198/5000 Noob Attack: Periastron Punishment
-	#835/5000 Noob Attack: Periastron Punishment
-	#3706/10000 Sk12r Boi
-	#460/10000 Sk12r Boi
-	#1326/2000 Raig Tree
-	#159/2000 Raig Tree
-```
-
-Get all of a user's models:
+#####Output:
+* fields with default values are omitted for clarity (e.g. isLimited = false)
 
 ```javascript
-roblox.getAssetsOwnedByUser('gusmanak', 'models', function(result) {
+{
+  totalAssets: 1080, // shedletsky owns 1080 hats
+  totalPages: 59,
+  assets: [{
+    name: 'Mr X',
+    id: 125861676,
+    priceInRobux: 1000,
+    creatorName: 'ROBLOX',
+    isLimitedUnique: true,
+    serialNumber: 237,
+    totalSold: 300,
+    hasSoldOut: true
+  }]
+}
+```
+
+#####Get all the models a user owns:
+
+```javascript
+// works with user IDs also
+roblox.getAssetsOwnedByUser(156, 'models', function(result) {
   console.log(result.assets[0]) // { name: 'Pain Region Brick', id: 141537523, creatorName: 'stickmasterluke' }
 })
 ```
