@@ -10,7 +10,7 @@ roblox.getUserId('builderman', function(err, userId) {
 })
 
 // get the first page of shedletsky's hats (18 assets per page)
-roblox.getAssetsOwnedByUser('shedletsky', 'hats', 1, function(result) {
+roblox.getAssetsOwnedByUser('shedletsky', 'hats', 1, function(err, result) {
   console.log(result);
 });
 ```

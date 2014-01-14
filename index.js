@@ -25,7 +25,7 @@ var getAssetsOwnedByUser = function(userId, assetType, maxPages, callback) {
 				totalAssets = page.assets.length + (page.totalPages * assetsPerPage);
 			}
 			if (page.currentPage >= page.totalPages || maxPages == 0) {
-				callback({ totalAssets: totalAssets, pages: page.currentPage, totalPages: page.totalPages, assets: assets });
+				callback(null, { totalAssets: totalAssets, pages: page.currentPage, totalPages: page.totalPages, assets: assets });
 				return;
 			}
 			var controls = {
@@ -39,7 +39,8 @@ var getAssetsOwnedByUser = function(userId, assetType, maxPages, callback) {
 		
 		var button = $('.verticaltab > a').filter(correctAssetType);
 		if (button.length == 0) {
-			throw new Error('invalid asset type');
+			callback(new Error('invalid asset type'));
+			return;
 		}
 		if (button.hasClass('selected')) {
 			// we're already on the right page (Hats)
