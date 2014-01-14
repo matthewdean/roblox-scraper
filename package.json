@@ -1,0 +1,21 @@
+{
+  "name": "roblox-scraper",
+  "version": "0.1.0",
+  "description": "Extracts data from roblox.com",
+  "author": "Matthew Dean",
+  "keywords": [
+    "roblox",
+	"scraper"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/matthewdean/roblox-scraper.git"
+  },
+  "dependencies": {
+	"request": "*",
+	"cheerio": "*"
+  },
+  "private": true,
+  "main": "./index.js",
+  "license": "MIT"
+}
