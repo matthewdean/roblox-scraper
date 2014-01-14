@@ -1,4 +1,5 @@
 var requestWithEncoding = require('./lib/request-with-encoding.js'),
+	request = require('request'),
 	profile = require('./lib/profile.js'),
 	cheerio = require('cheerio');
 
@@ -17,7 +18,6 @@ exports.getAssetsFromProfile = function(userId, assetType, callback) {
 			var $ = cheerio.load(body);
 			var page = new profile($);
 			assets = assets.concat(page.assets);
-			console.log(page.currentPage, page.totalPages);
 			if (page.currentPage < page.totalPages) {
 				var controls = {
 					__EVENTTARGET: 'ctl00$cphRoblox$rbxUserAssetsPane$FooterPageSelector_Next',
@@ -30,5 +30,25 @@ exports.getAssetsFromProfile = function(userId, assetType, callback) {
 				callback(assets);
 			}
 		});
+	});
+};
+
+exports.getUserId = function(username, callback) {
+	request({
+		method: 'HEAD',
+		url: 'http://www.roblox.com/user.aspx?username=' + username,
+		followRedirect: false
+	}, function(err, res, body) {
+		if (err) {
+			callback(err);
+			return;
+		}
+		if (res.headers.location == '/Error/DoesntExist.aspx') {
+			callback(new Error("no user named " + username));
+			return;
+		}
+		var userId = require('url').parse(res.headers.location, true).query.ID;
+		userId = parseInt(userId);
+		callback(null, userId);
 	});
 };
