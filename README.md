@@ -1,45 +1,40 @@
 roblox-scraper
 ==============
+API is unstable.
+
+#####Install
+```
+npm install roblox-scraper
+```
 
 #####Usage:
 ```javascript
 var roblox = require('roblox-scraper')
+```
 
-roblox.getUserId('builderman', function(err, userId) {
-  console.log(userId) // 156
+#####Get assets owned by a user
+
+```javascript
+roblox.user('builderman').getAssets('models', function(err, result) {
+  if (err) throw err
+  console.log(result)
 })
-
-// get the first page of shedletsky's hats (18 assets per page)
-roblox.getAssetsOwnedByUser('shedletsky', 'hats', 1, function(err, result) {
-  console.log(result);
-});
 ```
 
-#####Output:
-* fields with default values are omitted for clarity (e.g. isLimited = false)
-
+#####Check if a user owns an asset:
 ```javascript
-{
-  totalAssets: 1080, // shedletsky owns 1080 hats
-  totalPages: 59,
-  assets: [{
-    name: 'Mr X',
-    id: 125861676,
-    priceInRobux: 1000,
-    creatorName: 'ROBLOX',
-    isLimitedUnique: true,
-    serialNumber: 237,
-    totalSold: 300,
-    hasSoldOut: true
-  }]
-}
+// you can supply userId instead of username
+roblox.user(261).hasAsset(1818, function(err, value) {
+	if (err) throw err
+
+	console.log('Shedletsky owns Crossroads: ' + value) // Shedletsky owns Crossroads: false
+})
 ```
 
-#####Get all the models a user owns:
-
+#####Get user id from username:
 ```javascript
-// works with user IDs also
-roblox.getAssetsOwnedByUser(156, 'models', function(result) {
-  console.log(result.assets[0]) // { name: 'Pain Region Brick', id: 141537523, creatorName: 'stickmasterluke' }
+roblox.user('roblox').getId(function(err, id) {
+  if (err) throw err
+  console.log(id) // 1
 })
 ```

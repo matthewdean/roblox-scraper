@@ -15,6 +15,9 @@
 	"request": "*",
 	"cheerio": "*"
   },
+  "devDependencies": {
+	"nodeunit": "*"
+  },
   "main": "./index.js",
   "license": "MIT"
 }
