@@ -25,8 +25,7 @@ user.getAssets(roblox.AssetType.Place, function(err, places) {
 {
   name: "Sword Fights on the Heights IV",
   id: 47324,
-  creatorName: "Shedletsky",
-  creatorId: 261,
+  creator: { name: "Shedletsky", id: 261 }
 }
 ```
 
@@ -40,8 +39,7 @@ user.getAssets(roblox.AssetType.Hat, function(err, hats) {
 {
   name: "Dominus Empyreus",
   id: 21070012,
-  creatorName: "ROBLOX",
-  creatorId: 1,
+  creator: { name: "ROBLOX", id: 1 },
   priceInRobux: 13337,
   isLimitedUnique: true,
   serialNumber: 8,
