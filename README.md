@@ -1,11 +1,12 @@
-roblox-scraper
+roblox-scraper 0.1.1
 ==============
-API is unstable.
+This is a library which makes it really easy to grab data from the ROBLOX website. In some cases it fakes ASP.NET postbacks so it's very hacky (but I try to minimize hackiness as much as possible). It relies on the node.js request library for sending HTTP requests and cheerio for parsing HTML.
 
-#####Install
-```
-npm install roblox-scraper
-```
+Please report any bugs/issues you find or if you want to see a new method.
+
+The API is very unstable. Proceed at your own risk.
+
+I try to stick to [semantic versioning](http://semver.org/) as much as possible.
 
 #####Usage:
 ```javascript
@@ -38,3 +39,7 @@ roblox.user('roblox').getId(function(err, id) {
   console.log(id) // 1
 })
 ```
+
+#####License
+
+MIT
