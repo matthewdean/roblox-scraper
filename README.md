@@ -1,49 +1,57 @@
-roblox-scraper 0.1.1
-==============
-A simple node.js library which extracts data from roblox.com
+# roblox-scraper
+A simple node.js library which extracts data from roblox.com. If there is a ROBLOX web API for it, there is no need to include it in this library.
 
-The API is unstable. Please report bugs or request features using the issue tracker.
+The API is unstable. Please report bugs or request features with the [issue tracker](https://github.com/matthewdean/roblox-scraper/issues).
 
-Please report bugs or suggest features using the [issue tracker](https://github.com/matthewdean/roblox-scraper/issues).
-
-#####Installation
-```
-npm install roblox-scraper
+## Installation
+```bash
+npm install mysql
 ```
 
-#####Usage:
-```javascript
-var roblox = require('roblox-scraper')
-```
-
-#####Get assets owned by a user
+## Usage
 
 ```javascript
-roblox.user('builderman').getAssets('models', function(err, result) {
-  if (err) throw err
-  console.log(result)
-})
+var roblox = require('roblox-scraper');
 ```
 
-#####Check if a user owns an asset:
+### Get assets owned by a user
+
 ```javascript
-// you can supply userId instead of username
-roblox.user(261).hasAsset(1818, function(err, value) {
-	if (err) throw err
+var user = new roblox.User(261);
+user.getAssets(roblox.AssetType.Place, function(err, places) {
+  console.log(places[places.length-2]); // second-to-last place
+});
 
-	console.log('Shedletsky owns Crossroads: ' + value) // Shedletsky owns Crossroads: false
-})
+{
+  name: "Sword Fights on the Heights IV",
+  id: 47324,
+  creatorName: "Shedletsky",
+  creatorId: 261,
+}
 ```
 
-#####Get user id from username:
 ```javascript
-roblox.user('roblox').getId(function(err, id) {
-  if (err) throw err
-  console.log(id) // 1
-})
+var user = new roblox.User('TheGamer101');
+user.getAssets(roblox.AssetType.Hat, function(err, hats) {
+  var emp = hats.find(function(hat) { return hat.name == "Dominus Empyreus"; });
+  console.log(emp);
+});
+
+{
+  name: "Dominus Empyreus",
+  id: 21070012,
+  creatorName: "ROBLOX",
+  creatorId: 1,
+  priceInRobux: 13337,
+  isLimitedUnique: true,
+  serialNumber: 8,
+  serialNumberTotal: 26
+}
 ```
 
-#####License (MIT)
+## License
+
+(The MIT License)
 
 Copyright (c) 2014 Matthew Dean
 
