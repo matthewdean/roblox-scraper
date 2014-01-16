@@ -14,14 +14,18 @@ npm install mysql
 var roblox = require('roblox-scraper');
 ```
 
-### Get assets owned by a user
+### Get assets owned by a given user
+```javascript
+var user = new roblox.User('Shedletsky'); // new roblox.User(261) would also work
+
+user.getAssets(roblox.AssetType.Place, function(err, places) {
+  console.log(places[places.length-2]);
+});
+```
+
+Since [Shedletsky](http://www.roblox.com/user.aspx?id=261)'s second-to-last place is [Sword Fights on the Heights IV](http://www.roblox.com/Sword-Fights-on-the-Heights-IV-place?id=47324), this is the output:
 
 ```javascript
-var user = new roblox.User(261);
-user.getAssets(roblox.AssetType.Place, function(err, places) {
-  console.log(places[places.length-2]); // second-to-last place
-});
-
 {
   name: "Sword Fights on the Heights IV",
   id: 47324,
@@ -29,13 +33,11 @@ user.getAssets(roblox.AssetType.Place, function(err, places) {
 }
 ```
 
-```javascript
-var user = new roblox.User('TheGamer101');
-user.getAssets(roblox.AssetType.Hat, function(err, hats) {
-  var emp = hats.find(function(hat) { return hat.name == "Dominus Empyreus"; });
-  console.log(emp);
-});
+Remember: an asset will always have `name`, `id`, and `creator` fields.
 
+Here is another example of an asset. The `serialNumber` and `serialNumberTotal` fields are defined because `isLimitedUnique` is true.
+
+```javascript
 {
   name: "Dominus Empyreus",
   id: 21070012,
@@ -46,6 +48,8 @@ user.getAssets(roblox.AssetType.Hat, function(err, hats) {
   serialNumberTotal: 26
 }
 ```
+
+Keep in mind that ROBLOX's copy of a limited unique asset will be `isLimited` instead of `isLimitedUnique`, because it has no serial number and is thus not "unique".
 
 ## License
 
