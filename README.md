@@ -16,9 +16,7 @@ var roblox = require('roblox-scraper');
 
 ### Get assets owned by a given user
 ```javascript
-var user = new roblox.User('Shedletsky'); // new roblox.User(261) would also work
-
-user.getAssets(roblox.AssetType.Place, function(err, places) {
+roblox.getUser('Shedletsky').getAssets(roblox.AssetType.Place, function(err, places) {
   console.log(places[places.length-2]);
 });
 ```
