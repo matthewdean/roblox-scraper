@@ -1,5 +1,5 @@
 # roblox-scraper
-[![Build Status](https://travis-ci.org/matthewdean/roblox-scraper)](https://travis-ci.org/matthewdean/roblox-scraper)
+[![Build Status](https://travis-ci.org/matthewdean/roblox-scraper.png?branch=master)](https://travis-ci.org/matthewdean/roblox-scraper)
 
 A simple node.js library which extracts data from roblox.com. If there is a ROBLOX web API for it, there is no need to include it in this library.
 
