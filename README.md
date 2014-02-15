@@ -3,11 +3,6 @@ A simple node.js library which extracts data from roblox.com. If there is a ROBL
 
 The API is unstable. Please report bugs or request features with the [issue tracker](https://github.com/matthewdean/roblox-scraper/issues).
 
-## Installation
-```bash
-npm install mysql
-```
-
 ## Usage
 
 ```javascript
